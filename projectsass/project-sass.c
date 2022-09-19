@@ -91,7 +91,38 @@ void Display_Pro(){
 
 }
 void Search_Pro(){
+int n,i,code,quantity;
+  float price_TTC;
+  do{
+     printf("Search (1) Order By Code Or (2) Order By Quantity\n");
+     scanf("%d",&n);
+    }while(n!=2 && n!=1);
+  if(n==1){
+     printf("Enter Code Product : ");
+     scanf("%d",&code);
+     for(i=0;i<count_pro;i++){
+        if(code==T_product[i].Code){
+           printf("Name : %s \n",T_product[i].Name);
+           printf("Quantity : %d \n",T_product[i].Quantity);
+           printf("Price : %.2f$\n",T_product[i].Price);
+           price_TTC=T_product[i].Price + 0.15*T_product[i].Price;
+           printf("Price(TTC) : %.2f $ \n",price_TTC);
+        }
+     }
+  }else if(n==2){
+     printf("\nsearch by quantity: ");
+   scanf("%d",&quantity);
+   for(i=0;i<count_pro;i++){
+   if(quantity==T_product[i].Quantity){
+   printf("%s\n",T_product[i].Name);
+    printf("price of product: %.2f$ \n", T_product[i].Price);
+    price_TTC = T_product[i].Price + 0.15*T_product[i].Price;
+    printf("price (TTC) of product: %.2f$ \n", price_TTC);
+    printf("\n---------------------------------------\n");
 
+    }
+   }
+  }
 }
 void Edit_Qty(){
 
