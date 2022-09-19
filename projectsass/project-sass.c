@@ -236,7 +236,30 @@ void Income(){
 }
 
 void Statistique(){
+  int i;
+  float total=0;
+  int qty_total=0;
+  float moyen=1;
 
+  for(i=0;i<count_sold;i++){
+    total+=T_sold[i].price*T_sold[i].sold;
+    qty_total+=T_sold[i].sold;
+  }
+  printf("total of the day is: %.2f\n", total);
+  moyen = total / qty_total;
+  printf("moyen of the day is: %.2f\n", moyen);
+
+  float  min, max;
+  min = T_sold[0].price;
+  for(i=1;i<count_sold;i++){
+    if(T_sold[i].price<min) min = T_sold[i].price;
+  }
+  printf("le min est:   %.2f$\n",min);
+  max = T_sold[0].price;
+  for(i=1;i<count_sold;i++){
+    if(T_sold[i].price>max) max = T_sold[i].price;
+  }
+  printf("le max est:   %.2f$",max);
 }
 
 
