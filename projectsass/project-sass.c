@@ -47,13 +47,37 @@ void Display_Pro(){
      scanf("%d",&n);
     }while(n!=2 && n!=1);
     if(n==2){
+        int t;
+        int o_code , o_quantity;
         //Order By Alphabitique
         for(i=0;i<count_pro;i++){
             for(j=i+1;j<count_pro;j++){
                 if(strcmp(T_product[i].Name,T_product[j].Name) > 0){
                     strcpy(c,T_product[i].Name);
+                    t=T_product[i].Price;
+                    o_code=T_product[i].Code;
+                    o_quantity=T_product[i].Quantity;
+
                     strcpy(T_product[i].Name,T_product[j].Name);
+                    T_product[i].Price=T_product[j].Price;
+                    T_product[i].Quantity=T_product[j].Quantity;
+                    T_product[i].Code=T_product[j].Code;
+
                     strcpy(T_product[j].Name,c);
+                    T_product[j].Price=t;
+                    T_product[j].Quantity=o_quantity;
+                    T_product[j].Code=o_code;
+
+
+
+
+
+
+
+
+
+
+
                 }
             }
         }
@@ -68,13 +92,25 @@ void Display_Pro(){
         }
 
     }else if(n==1){
+        char o_Name[20];
+        int o_code , o_quantity;
         //Order By Price
         for(int i=0;i<count_pro;i++){
             for(int j=i+1;j<count_pro;j++){
                 if(T_product[i].Price < T_product[j].Price){
                     t=T_product[i].Price;
+                    strcpy(o_Name,T_product[i].Name);
+                    o_code=T_product[i].Code;
+                    o_quantity=T_product[i].Quantity;
                     T_product[i].Price=T_product[j].Price;
+                    strcpy(T_product[i].Name,T_product[j].Name);
+
+                    T_product[i].Code=T_product[j].Code;
+                    T_product[i].Quantity=T_product[j].Quantity;
                     T_product[j].Price=t;
+                    strcpy(T_product[j].Name,o_Name);
+                    T_product[j].Quantity=o_quantity;
+                    T_product[j].Code=o_code;
                 }
             }
         }
