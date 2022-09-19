@@ -160,9 +160,52 @@ int n,i,code,quantity;
    }
   }
 }
+/////////////////////////////////////////////////////////////
+int count_sold=0;
+
+int code_edit;
 void Edit_Qty(){
 
+ int h,m,s;
+ int sold;
+ int i;
+ printf("Enter Code Product :");
+ scanf("%d",&code_edit);
+ printf("\n");
+ int qty_old=old_quantity();
+ printf("Old Quantitty: %d \n",qty_old);
+
+ for(i=0;i<count_pro;i++){
+    if(code_edit==T_product[i].Code){
+      printf("New Quantity :");
+      scanf("%d",&T_product[i].Quantity);
+      if(qty_old > T_product[i].Quantity){
+        printf("Enter time (in HH:MM:SS)");
+        scanf("%02d:%02d:%02d",&h,&m,&s);
+        sold=qty_old - T_product[i].Quantity;
+        //printf("sold : %d",sold);
+        //printf("COunt SOld %d",count_sold);
+        T_sold[count_sold].sold=sold;
+        strcpy(T_sold[count_sold].Name,T_product[i].Name);
+        T_sold[count_sold].price=T_product[i].Price;
+        T_sold[count_sold].h=h;
+        T_sold[count_sold].m=m;
+        T_sold[count_sold].s=s;
+        count_sold++;
+      }
+    }
+ }
 }
+int old_quantity(){
+    int old_qty;
+    for(int i=0;i<count_pro;i++){
+        if(code_edit==T_product[i].Code){
+            old_qty=T_product[i].Quantity;
+        }
+    }
+    return old_qty;
+}
+/////////////////////////////////////////////////////////////////
 void Delete_Pro(){
 
 }
@@ -182,7 +225,14 @@ void Pro_Qty_3(){
         }
 }
 void Income(){
-
+   int i;
+   for(i=0;i<count_sold;i++){
+    printf("Name: %s \n",T_sold[i].Name);
+    printf("Sold: %d \n",T_sold[i].sold);
+    printf("Price: %f \n",T_sold[i].price);
+    printf("H:M:S %d%d%d \n",T_sold[i].h,T_sold[i].m,T_sold[i].s);
+    printf("------------------------------------------------\n");
+  }
 }
 
 void Statistique(){
