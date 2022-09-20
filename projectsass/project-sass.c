@@ -67,17 +67,6 @@ void Display_Pro(){
                     T_product[j].Price=t;
                     T_product[j].Quantity=o_quantity;
                     T_product[j].Code=o_code;
-
-
-
-
-
-
-
-
-
-
-
                 }
             }
         }
@@ -102,11 +91,13 @@ void Display_Pro(){
                     strcpy(o_Name,T_product[i].Name);
                     o_code=T_product[i].Code;
                     o_quantity=T_product[i].Quantity;
+
+
                     T_product[i].Price=T_product[j].Price;
                     strcpy(T_product[i].Name,T_product[j].Name);
-
                     T_product[i].Code=T_product[j].Code;
                     T_product[i].Quantity=T_product[j].Quantity;
+
                     T_product[j].Price=t;
                     strcpy(T_product[j].Name,o_Name);
                     T_product[j].Quantity=o_quantity;
@@ -130,7 +121,7 @@ void Search_Pro(){
 int n,i,code,quantity;
   float price_TTC;
   do{
-     printf("Search (1) Order By Code Or (2) Order By Quantity\n");
+     printf("Search (1) by Code Or (2)  By Quantity\n");
      scanf("%d",&n);
     }while(n!=2 && n!=1);
   if(n==1){
@@ -207,8 +198,37 @@ int old_quantity(){
 }
 /////////////////////////////////////////////////////////////////
 void Delete_Pro(){
-
+    int i,j, code, k;
+    float price_ttc;
+    printf("\n Delete  by code: ");
+    scanf("%d",&code);
+    for(i=0;i<count_pro;i++){
+    if(code==T_product[i].Code){
+      strcpy(T_product[i].Name,T_product[i+1].Name);
+      T_product[i].Code=T_product[i+1].Code;
+      T_product[i].Price=T_product[i+1].Price;
+      T_product[i].Quantity=T_product[i+1].Quantity;
+    }
+  }
+  for (i=0;i<count_pro;i++){
+        for (j =i+1;j<count_pro;j++){
+            if (strcmp(T_product[i].Name,T_product[j].Name)==0){
+                for (k=j;k<count_pro-1;k++){
+                  strcpy(T_product[k].Name,T_product[k+1].Name);
+                  T_product[k].Code=T_product[k+1].Code;
+                  T_product[k].Price=T_product[k+1].Price;
+                  T_product[k].Quantity=T_product[k+1].Quantity;
+                }
+                count_pro--;
+                j--;
+            }
+        }
+    }
+  for (i=0;i<count_pro;i++)  {
+    printf("%s\n",T_product[i].Name);
+  }
 }
+///////////////////////////////////////////////////////////////////////////////////////////
 void Pro_Qty_3(){
     int i;
     float price_TTC;
