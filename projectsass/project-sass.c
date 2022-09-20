@@ -71,13 +71,18 @@ void Display_Pro(){
             }
         }
         for(i=0;i<count_pro;i++){
-        printf("##--Product Number \n",i);
-        printf("Name : %s \n",T_product[i].Name);
-        printf("Quantity : %d \n",T_product[i].Quantity);
+                if(T_product[i].Quantity==0){
+                    continue;
+                }else{
+
+                 printf("##--Product Number \n",i);
+                 printf("Name : %s \n",T_product[i].Name);
+                 printf("Quantity : %d \n",T_product[i].Quantity);
         printf("Price : %.2f$ \n",T_product[i].Price);
         price_TTC=T_product[i].Price + 0.15*T_product[i].Price;
         printf("Price(TTC) : %.2f$ \n",price_TTC);
-        printf("------------------------------------\n");
+        printf("------------------------------------\n");}
+
         }
 
     }else if(n==1){
@@ -106,13 +111,17 @@ void Display_Pro(){
             }
         }
         for(i=0;i<count_pro;i++){
-        printf("##--Product Number \n",i);
-        printf("Name : %s \n",T_product[i].Name);
-        printf("Quantity : %d \n",T_product[i].Quantity);
-        printf("Price : %.2f$ \n",T_product[i].Price);
-        price_TTC=T_product[i].Price + 0.15*T_product[i].Price;
-        printf("Price(TTC) : %.2f$ \n",price_TTC);
-        printf("------------------------------------\n");
+          if(T_product[i].Quantity==0){
+            continue;
+          }else{
+            printf("##--Product Number \n",i);
+            printf("Name : %s \n",T_product[i].Name);
+            printf("Quantity : %d \n",T_product[i].Quantity);
+            printf("Price : %.2f$ \n",T_product[i].Price);
+            price_TTC=T_product[i].Price + 0.15*T_product[i].Price;
+            printf("Price(TTC) : %.2f$ \n",price_TTC);
+            printf("------------------------------------\n");
+          }
         }
      }
 
@@ -205,10 +214,8 @@ void Delete_Pro(){
             index=i;
             for(i=index;i<count_pro;i++){
                 T_product[i]=T_product[i+1];
-
             }
             count_pro--;
-
         }
     }
 
@@ -223,13 +230,17 @@ void Pro_Qty_3(){
     float price_TTC;
         for(i=0;i<count_pro;i++){
           if(T_product[i].Quantity <3){
-            printf("##--Product Number \n",i);
-            printf("Name : %s \n",T_product[i].Name);
-            printf("Quantity : %d \n",T_product[i].Quantity);
-            printf("Price : %.2f$ \n",T_product[i].Price);
-            price_TTC=T_product[i].Price + 0.15*T_product[i].Price;
-            printf("Price(TTC) : %.2f$ \n",price_TTC);
-            printf("------------------------------------\n");
+            if(T_product[i].Quantity==0){
+                continue;
+            }else{
+                printf("##--Product Number \n",i);
+                printf("Name : %s \n",T_product[i].Name);
+                printf("Quantity : %d \n",T_product[i].Quantity);
+                printf("Price : %.2f$ \n",T_product[i].Price);
+                price_TTC=T_product[i].Price + 0.15*T_product[i].Price;
+                printf("Price(TTC) : %.2f$ \n",price_TTC);
+                printf("------------------------------------\n");
+            }
           }
         }
 }
@@ -324,3 +335,4 @@ int main(){
 
  return 0;
 }
+
