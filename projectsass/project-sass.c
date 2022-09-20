@@ -198,33 +198,22 @@ int old_quantity(){
 }
 /////////////////////////////////////////////////////////////////
 void Delete_Pro(){
-    int i,j, code, k;
-    float price_ttc;
-    printf("\n Delete  by code: ");
+    int code,index;
     scanf("%d",&code);
-    for(i=0;i<count_pro;i++){
-    if(code==T_product[i].Code){
-      strcpy(T_product[i].Name,T_product[i+1].Name);
-      T_product[i].Code=T_product[i+1].Code;
-      T_product[i].Price=T_product[i+1].Price;
-      T_product[i].Quantity=T_product[i+1].Quantity;
-    }
-  }
-  for (i=0;i<count_pro;i++){
-        for (j =i+1;j<count_pro;j++){
-            if (strcmp(T_product[i].Name,T_product[j].Name)==0){
-                for (k=j;k<count_pro-1;k++){
-                  strcpy(T_product[k].Name,T_product[k+1].Name);
-                  T_product[k].Code=T_product[k+1].Code;
-                  T_product[k].Price=T_product[k+1].Price;
-                  T_product[k].Quantity=T_product[k+1].Quantity;
-                }
-                count_pro--;
-                j--;
+    for(int i=0;i<count_pro;i++){
+        if(code==T_product[i].Code){
+            index=i;
+            for(i=index;i<count_pro;i++){
+                T_product[i]=T_product[i+1];
+
             }
+            count_pro--;
+
         }
     }
-  for (i=0;i<count_pro;i++)  {
+
+
+  for (int i=0;i<count_pro;i++)  {
     printf("%s\n",T_product[i].Name);
   }
 }
