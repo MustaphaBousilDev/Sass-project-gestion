@@ -11,6 +11,7 @@ struct medication{
   float Price;
 };
 struct medication T_product[100];
+struct medication T_order[1];
 /////////////////////////////////////////////////////////////
 //Structure save product sold
 struct Sold{
@@ -23,6 +24,13 @@ struct Sold T_sold[100];
 ////////////////////////////////////////////////////////////
 
 int j,i;
+
+
+void order_by(int i , int j){
+  T_order[0]=T_product[i];
+  T_product[i]=T_product[j];
+  T_product[j]=T_order[0];
+}
 
 
 void get_Data(int i,float price_TTC){
@@ -75,24 +83,7 @@ void Display_Pro(){
         for(i=0;i<count_pro;i++){
             for(j=i+1;j<count_pro;j++){
                 if(strcmp(T_product[i].Name,T_product[j].Name) > 0){
-
-                    //Save first data in this variable
-                    strcpy(or_name,T_product[i].Name);
-                    or_price=T_product[i].Price;
-                    or_code=T_product[i].Code;
-                    or_quantity=T_product[i].Quantity;
-
-                    //switch element
-
-                    strcpy(T_product[i].Name,T_product[j].Name);
-                    T_product[i].Price=T_product[j].Price;
-                    T_product[i].Quantity=T_product[j].Quantity;
-                    T_product[i].Code=T_product[j].Code;
-
-                    strcpy(T_product[j].Name,or_name);
-                    T_product[j].Price=or_price;
-                    T_product[j].Quantity=or_quantity;
-                    T_product[j].Code=or_code;
+                    order_by(i,j);
                 }
             }
         }
@@ -109,22 +100,7 @@ void Display_Pro(){
         for(int i=0;i<count_pro;i++){
             for(int j=i+1;j<count_pro;j++){
                 if(T_product[i].Price < T_product[j].Price){
-
-                    or_price=T_product[i].Price;
-                    strcpy(or_name,T_product[i].Name);
-                    or_code=T_product[i].Code;
-                    or_quantity=T_product[i].Quantity;
-
-
-                    T_product[i].Price=T_product[j].Price;
-                    strcpy(T_product[i].Name,T_product[j].Name);
-                    T_product[i].Code=T_product[j].Code;
-                    T_product[i].Quantity=T_product[j].Quantity;
-
-                    T_product[j].Price=or_price;
-                    strcpy(T_product[j].Name,or_name);
-                    T_product[j].Quantity=or_quantity;
-                    T_product[j].Code=or_code;
+                    order_by(i,j);
                 }
             }
         }
