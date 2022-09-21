@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <stdlib.h>
 #include <string.h>
 #include <time.h>
 
@@ -158,7 +157,6 @@ void Edit_Qty(){
  printf("\n");
  int qty_old=old_quantity();
  printf("Old Quantitty: %d \n",qty_old);
-
  for(i=0;i<count_pro;i++){
     if(code_edit==T_product[i].Code){
       printf("New Quantity :");
